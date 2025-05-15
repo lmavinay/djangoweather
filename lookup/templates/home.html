@@ -2,8 +2,20 @@
 
 {%block content%}
 
-<h1>HELLO WORLD!!</h1>
-<br/>
-{{ api }}
+{% if api%}
+	{% if api == "Error..." %}
+		There is an Error while loading the api, please try again...
+	{% else %}
+		<div class="card {{ category_color }}" style="max-width: 100rem;">
+		  <h1 class = "display-4"> HELLO {{api.0.ReportingArea}}! </h1>
+		  <div class="card-body">
+		    <p class="card-text">Current Air Quality : {{api.0.AQI}} <br/>
+			Category : {{ api.0.Category.Name}} <br/></p>
+			<p> {{category_description}}</p>
+		  </div>
+		</div>
+	{% endif %}
+{% endif %}
 
 {%endblock%}
+
